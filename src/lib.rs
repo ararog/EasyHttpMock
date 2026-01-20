@@ -6,17 +6,13 @@ use bytes::Bytes;
 use http::{Request, Response, StatusCode};
 use http_body_util::Full;
 use hyper::body::Incoming;
-use vetis::{
-    server::{errors::VetisError},
-    ResponseType,
-};
+use vetis::{RequestType, ResponseType, server::errors::VetisError};
 
+pub mod config;
 pub mod errors;
 pub mod server;
-pub mod config;
 
 mod tests;
-
 
 pub struct EasyHttpMock<S>
 where
@@ -40,10 +36,14 @@ impl<S: ServerAdapter> EasyHttpMock<S> {
         }
     }
 
+    pub fn base_url(&self) -> String {
+        self.server.base_url()
+    }
+
     pub async fn start<H, Fut>(&mut self, handler: H) -> Result<(), EasyHttpMockError>
     where
-        H: Fn(Request<Incoming>) -> Fut + Send + Sync + 'static,
-        Fut: Future<Output = Result<Response<Full<Bytes>>, VetisError>> + Send + 'static,
+        H: Fn(RequestType) -> Fut + Send + Sync + 'static,
+        Fut: Future<Output = Result<ResponseType, VetisError>> + Send + 'static,
     {
         self.server.start(handler).await
     }
@@ -51,11 +51,11 @@ impl<S: ServerAdapter> EasyHttpMock<S> {
     pub async fn stop(&mut self) -> Result<(), EasyHttpMockError> {
         self.server.stop().await
     }
+}
 
-    pub fn response(status: StatusCode, body: &[u8]) -> ResponseType {
-        http::Response::builder()
-            .status(status)
-            .body(Full::new(Bytes::from(body.to_vec())))
-            .unwrap()
-    }
+pub fn mock_response(status: StatusCode, body: &[u8]) -> ResponseType {
+    http::Response::builder()
+        .status(status)
+        .body(Full::new(Bytes::from(body.to_vec())))
+        .unwrap()
 }
