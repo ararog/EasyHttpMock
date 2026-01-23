@@ -3,7 +3,7 @@ use thiserror::Error;
 #[derive(Debug, Error)]
 pub enum EasyHttpMockError {
     #[error("Server error: {0}")]
-    Server(#[from] ServerError)
+    Server(#[from] ServerError),
 }
 
 #[derive(Debug, Clone, Error, PartialEq)]

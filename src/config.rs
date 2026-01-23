@@ -1,4 +1,4 @@
-use crate::server::{ServerAdapter};
+use crate::server::ServerAdapter;
 
 pub struct EasyHttpMockConfigBuilder<S>
 where

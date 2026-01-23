@@ -1,11 +1,18 @@
 use std::future::Future;
 
 use vetis::{
-    RequestType, ResponseType, Vetis, server::{config::{ServerConfig, ServerConfigBuilder}, errors::VetisError}
+    server::{
+        config::{ServerConfig, ServerConfigBuilder},
+        errors::VetisError,
+    },
+    RequestType, ResponseType, Vetis,
 };
 
 use crate::{
-    EasyHttpMock, config::{EasyHttpMockConfig, EasyHttpMockConfigBuilder}, errors::{EasyHttpMockError, ServerError}, server::{BaseUrlGenerator, PortGenerator, ServerAdapter}
+    config::{EasyHttpMockConfig, EasyHttpMockConfigBuilder},
+    errors::{EasyHttpMockError, ServerError},
+    server::{BaseUrlGenerator, PortGenerator, ServerAdapter},
+    EasyHttpMock,
 };
 
 pub struct VetisServerAdapter {

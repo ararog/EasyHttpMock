@@ -6,7 +6,7 @@ use bytes::Bytes;
 use http::{Request, Response, StatusCode};
 use http_body_util::Full;
 use hyper::body::Incoming;
-use vetis::{RequestType, ResponseType, server::errors::VetisError};
+use vetis::{server::errors::VetisError, RequestType, ResponseType};
 
 pub mod config;
 pub mod errors;
