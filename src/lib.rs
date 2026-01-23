@@ -3,9 +3,8 @@ use std::future::Future;
 use crate::{config::EasyHttpMockConfig, errors::EasyHttpMockError, server::ServerAdapter};
 
 use bytes::Bytes;
-use http::{Request, Response, StatusCode};
+use http::StatusCode;
 use http_body_util::Full;
-use hyper::body::Incoming;
 use vetis::{server::errors::VetisError, RequestType, ResponseType};
 
 pub mod config;
