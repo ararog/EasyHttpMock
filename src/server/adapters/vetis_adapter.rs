@@ -9,7 +9,7 @@ use vetis::{
 };
 
 use crate::{
-    config::{EasyHttpMockConfig, EasyHttpMockConfigBuilder},
+    config::EasyHttpMockConfig,
     errors::{EasyHttpMockError, ServerError},
     server::{BaseUrlGenerator, PortGenerator, ServerAdapter},
     EasyHttpMock,
