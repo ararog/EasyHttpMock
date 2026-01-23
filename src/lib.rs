@@ -24,7 +24,11 @@ where
 
 impl<S: ServerAdapter> EasyHttpMock<S> {
     pub fn new(config: EasyHttpMockConfig<S>) -> EasyHttpMock<S> {
-        let server = S::new(config.server_config.clone());
+        let server = S::new(
+            config
+                .server_config
+                .clone(),
+        );
         EasyHttpMock { config, server }
     }
 
@@ -32,12 +36,18 @@ impl<S: ServerAdapter> EasyHttpMock<S> {
         if let Some(base_url) = &self.config.base_url {
             format!("{}{}", base_url, path)
         } else {
-            format!("{}{}", self.server.base_url(), path)
+            format!(
+                "{}{}",
+                self.server
+                    .base_url(),
+                path
+            )
         }
     }
 
     pub fn base_url(&self) -> String {
-        self.server.base_url()
+        self.server
+            .base_url()
     }
 
     pub async fn start<H, Fut>(&mut self, handler: H) -> Result<(), EasyHttpMockError>
@@ -45,11 +55,15 @@ impl<S: ServerAdapter> EasyHttpMock<S> {
         H: Fn(RequestType) -> Fut + Send + Sync + 'static,
         Fut: Future<Output = Result<ResponseType, VetisError>> + Send + 'static,
     {
-        self.server.start(handler).await
+        self.server
+            .start(handler)
+            .await
     }
 
     pub async fn stop(&mut self) -> Result<(), EasyHttpMockError> {
-        self.server.stop().await
+        self.server
+            .stop()
+            .await
     }
 }
 

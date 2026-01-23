@@ -1,6 +1,6 @@
 ---
 layout: default
-title: EasyHttpMock - A Rust HTTP Client
+title: EasyHttpMock - The effortless HTTP mock server
 nav_order: 1
 description: "🧪 The effortless HTTP mock server for seamless API testing"
 permalink: /
@@ -14,9 +14,7 @@ permalink: /
 [![Documentation](https://docs.rs/easyhttpmock/badge.svg)](https://docs.rs/easyhttpmock/latest/easyhttpmock)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**EasyHttpMock** is a straightforward, non opinionated, developer-centric HTTP client library for Rust. It offers a rich array of modern features—from flexible authentication and serialization formats to runtime compatibility and middleware support—while maintaining simplicity and ease of use. It’s especially well-suited for Rust projects that require a lightweight, efficient HTTP client without sacrificing control or extensibility.
-
-Built on top of [hyper](https://github.com/hyperium/hyper).
+**EasyHttpMock** is a powerful yet simple HTTP mock server designed specifically for testing HTTP clients. Built on top of [VeTiS](https://github.com/ararog/vetis), it provides a clean, intuitive API for creating realistic mock endpoints that simulate real-world API behavior, making your testing workflow faster and more reliable.
 
 ## Features
 

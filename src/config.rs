@@ -23,10 +23,7 @@ where
     }
 
     pub fn build(self) -> EasyHttpMockConfig<S> {
-        EasyHttpMockConfig {
-            base_url: self.base_url,
-            server_config: self.server_config,
-        }
+        EasyHttpMockConfig { base_url: self.base_url, server_config: self.server_config }
     }
 }
 
@@ -45,10 +42,7 @@ where
     S::Config: Clone + Default,
 {
     fn default() -> Self {
-        Self {
-            base_url: None,
-            server_config: S::Config::default(),
-        }
+        Self { base_url: None, server_config: S::Config::default() }
     }
 }
 
@@ -58,10 +52,7 @@ where
     S::Config: Clone + Default,
 {
     pub fn builder() -> EasyHttpMockConfigBuilder<S> {
-        EasyHttpMockConfigBuilder {
-            base_url: None,
-            server_config: S::Config::default(),
-        }
+        EasyHttpMockConfigBuilder { base_url: None, server_config: S::Config::default() }
     }
 
     pub fn base_url(&self) -> &Option<String> {

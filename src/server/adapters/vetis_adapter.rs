@@ -21,7 +21,10 @@ pub struct VetisServerAdapter {
 
 impl BaseUrlGenerator<VetisServerAdapter> for &ServerConfig {
     fn gen_url(&self) -> String {
-        if self.security().is_some() {
+        if self
+            .security()
+            .is_some()
+        {
             format!("https://localhost:{}", self.port())
         } else {
             format!("http://localhost:{}", self.port())
@@ -60,13 +63,13 @@ impl ServerAdapter for VetisServerAdapter {
     type Config = ServerConfig;
 
     fn new(config: Self::Config) -> Self {
-        Self {
-            server: Vetis::new(config),
-        }
+        Self { server: Vetis::new(config) }
     }
 
     fn base_url(&self) -> String {
-        self.server.config().gen_url()
+        self.server
+            .config()
+            .gen_url()
     }
 
     async fn start<H, Fut>(&mut self, handler: H) -> Result<(), EasyHttpMockError>
